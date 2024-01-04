@@ -10,37 +10,6 @@
     <div>제시어: <span id="word"></span></div>
     <input type="text">
     <button>입력</button>
-    <script>
-        const number = Number(prompt('몇명 참가?'));
-        const $button = document.querySelector('button');
-        const $input = document.querySelector('input');
-        const $word = document.querySelector('#word');
-        const $order = document.querySelector('#order')
-        let word;
-        let newWord;
-
-        const onClickButton = () => {
-            if (!word || word[word.length -1] === newWord[0]) {
-                word = newWord;
-                $word.textContent = word; // 화면에 표시
-                const order = Number($order.textContent);
-                if (order + 1 > number) {
-                    $order.textContent = 1;
-                } else {
-                    $order.textContent = order + 1;
-                }
-                $input.value = '';
-                $input.focus();
-            } else {
-                alert('올바르지 않은 단어!!');
-            }
-        };
-        const onInput = (event) => {
-            newWord = event.target.value;
-        };
-
-        $button.addEventListener('click', onClickButton);
-        $input.addEventListener('input', onInput);
-    </script>
+    <script src="word-relay.js"></script>
 </body>
 </html>
