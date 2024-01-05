@@ -313,10 +313,10 @@
   - 요즘은 대부분 폼 요소에 id, class를 사용하지만, css가 등장하기 전에는 name을 사용
 - 폼 배열을 사용해 폼 요소에 접근하기
   - id, class, name 속성도 없는 경우 폼 배열사용
-  - docuement의 속성 중 forms 속성은 문서에 있는 <form> 태그를 가져와 배열과 비슷한 형태로 저장
+  - docuement의 속성 중 forms 속성은 문서에 있는 `<form>` 태그를 가져와 배열과 비슷한 형태로 저장
 
 ### 선택 목록과 항목에 접근하기
-- <select> 태그를 사용한 목록을 '선택 목록'이라 한다
+- `<select>` 태그를 사용한 목록을 '선택 목록'이라 한다
 - 선택 목록에 접근
   - querySelector()로 선택 목록에 접근
   - 선택 목록에 여러 개의 옵션 항목이 있는데, 이에 접근하려면 options 프로퍼티 사용
@@ -332,7 +332,7 @@
 - 하나의 그룹 안에서 항목을 선택하므로 그룹별 같은 name을 붙임
 - checked 속성을 사용해 선택한 항목에 접근하기
   - 라이오 버튼이나 체크 박스에는 checked 속성이 있음
-  - 만약 어떤 것을 선택하면 해당하는 <input> 태그에 checked 속성이 추가됨
+  - 만약 어떤 것을 선택하면 해당하는 `<input>` 태그에 checked 속성이 추가됨
   - document.querySelector("input[name='subject']:checked")
   
 
