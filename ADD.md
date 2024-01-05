@@ -47,3 +47,39 @@
     - input이 대표적인 입력 태그로, 입력태그.value = 값; 이렇게 하면 입력창에 값이 들어감
     - 일반 태그는 value가 아니라 textContent 속성을 사용
     - focus로 입력 태그를 선택할 수 있음. 입력태그.focus()
+
+## 함수
+- 함수를 만드는 함수를 '고차 함수'라고 함
+- '모든 내부 코드가 같은' 함수보다 '대부분 다 비슷한데 특정 부분만 다른'함수가 실무에 더 많이 나와 이럴땐 고차 함수를 사용해 중복을 제거해야 한다
+- 아래 코드 아리까리한점. 왜 () => 이걸 한번 더 해야만 햇나? (op) => {..} 이렇게 하면 안되나?
+```
+const onClickOperator = (op) => () => {
+  if (numOne) {
+      operator = op;
+      $operator.value = op;
+  } else {
+      alert('숫자 먼저 입력');
+  }
+}
+document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
+document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
+document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
+document.querySelector('#multiply').addEventListener('click', onClickOperator('*'));
+```
+```
+<GPT 답변>
+표시된 대로 onClickOperator 함수를 수정하면 HTML의 이벤트 리스너와 함께 함수를 사용하는 방식이 변경됩니다. 흐름을 살펴보겠습니다.
+
+HTML 로드: HTML 페이지가 로드되면 <body> 태그 끝에 연결된 JavaScript 파일을 읽고 실행합니다. 여기에는 'onClickOperator' 함수 정의가 포함됩니다.
+이벤트 리스너 설정: 원본 코드에서는 연산자 버튼(#plus, #minus, #divide, #multiply)에 대한 이벤트 리스너를 설정합니다. 그러나 수정된 ​​onClickOperator 함수를 사용하면 이벤트 리스너를 설정할 때 '+' 또는 '-'와 같은 연산자를 직접 전달할 수 없습니다. 이는 수정된 함수가 다른 함수를 반환하지 않고 클릭 이벤트를 직접 처리하기 때문입니다.
+
+연산자 버튼 클릭: 연산자 버튼을 클릭하면 적절한 연산자를 onClickOperator에 수동으로 전달해야 합니다. 이벤트 리스너를 설정할 때 'onClickOperator'를 다른 함수 내에 래핑하면 됩니다. 다음은 더하기 버튼에 대한 이벤트 리스너를 설정하는 방법에 대한 예입니다.
+
+document.querySelector('#plus').addEventListener('click', () => onClickOperator('+'));
+
+이 예에서는 #plus 버튼을 클릭하면 익명 함수가 호출되고 '+'를 인수로 사용하여 onClickOperator를 호출합니다.
+
+onClickOperator 실행: onClickOperator가 '+'와 같은 연산자로 호출되면 먼저 numOne에 값이 있는지 확인합니다. 그렇다면 '연산자'를 전달된 연산자로 설정하고 '$연산자' 입력 값을 업데이트합니다. numOne이 비어 있으면 '숫자를 먼저 입력하세요'라는 경고가 표시됩니다.
+지속적인 상호 작용: 계산기와 더 많은 상호 작용(숫자 입력, 연산자 선택 등)을 하면 연산자 버튼을 클릭할 때마다 해당 연산자에 따라 'onClickOperator'가 호출됩니다.
+참고: 이제 onClickOperator가 클릭 이벤트를 직접 처리하므로 예제에 표시된 것처럼 이벤트 리스너의 컨텍스트에서 이벤트가 올바르게 호출되는지 확인해야 합니다.
+```
