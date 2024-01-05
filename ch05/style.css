@@ -1,0 +1,12 @@
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.clicked {
+    background-color: yellow;
+    color: blue;
+}
+.dark {
+    background-color: #222;
+    color: #eee;
+}

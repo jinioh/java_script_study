@@ -230,6 +230,115 @@
 - 특정 시간 이후에 실행 - setTimeout(콜백함수, 시간)
   - 지정한 시간 후에 콜백 함수 실행
 
+# DOM의 기초
+## DOM과 DOM 트리
+### DOM이란
+- 웹에서 자바스크립트를 사용하는 가장 큰 이유는, 어떤 조건에 맞거나 사용자 동작이 있을 때 웹 문서 전체 또는 일부분이 동적으로 반응하기 때문
+- 이렇게 하려면 웹 문서에 담겨 있는 모든 요소를 따로 제어할 수 있어야 함
+- DOM이란, 자바스크립트 같은 프로그래밍 언어로 웹 문서에 접근하고 제어할 수 있도록 웹 문서를 체계적으로 정리하는 방법을 말함
+- DOM에서는 웹 문서를 하나의 객체로 정의
+
+### DOM 트리
+- 웹 문서는 여러가지 태그가 서로 포함 관계를 가지고 있음
+- 태그의 포함 관계 떄문에 각 태그 간에는 '부모'와 '자식'관계가 생김
+- DOM에서 웹 문서를 구조화하려면 먼저 웹 문서 구조를 부모 요소와 자식 요소로 구분해 포함 관계를 나타내야함
+- DOM트리에서 이런 구조로 웹 문서를 해석한다는 것을 기억해야 자바스크립트를 사용해 어떻게 접근하고, 원하는 부분을 어떤 방식으로 수정할지 이해할 수 있음
+
+## 웹 요소에 접근하기
+### querySelector()
+- 선택자를 사용해 웹 요소에 접근할 때 querySelector()나 querySelectorAll()를 사용. 
+- 이 함수는 document 객체에 포함됨
+- querySelector()를 사용하면 지정한 선택자를 사용한 요소 중 첫 번째 요소에 접근할 수 있음
+- docuemnt.querySelector(선택자)
+- CSS 선택자 종류
+  - 타입 선택자: 특정 태그를 사용한 모든 요소. id나 class가 없는경우 ex) p {...}
+  - class 선택자: 클래스명을 사용하는 ex) .accent {...}
+  - id 선택자: id명 사용하는 ex) #container {...}
+  - 하위 선택자: A 요소의 하위에 있는 모든 B요소 ex) from input {...}
+  - 자식 선택자: A 요소의 하위에 있는 요소 중 자식 레벨의 B ex) ul > li {...}
+- 웹문서 여러 이미지 중 특정 이미지를 가져온다면
+  - document.querySelector('#profile img')
+
+### querySelectorAll()
+- id 선택자를 제외한 다른 선택자들은 문서에서 여러 번 사용할 수 있음
+- 가져온 것을 인덱스를 사용해 접근 가능
+  - document.querySelectorAll(".user")[2]
+
+### 웹 요서 내용 가져오고 수정하기
+- 웹 요소에 접근 후 내용을 가져오거나 수정할 수 있음
+- 이때 자바스크립트 객체의 innterText,innerHtml, textContent 프로퍼티를 사용
+- 웹 요소 내용 가져오기
+  - innerText는 웹 브라우저 창에 보이는 내용만 가져옴
+    - display:none을 사용해 화면에 감춘 요소의 내용은 가져오지 않음
+    - 소스에 공백이 3개 있어도, 브라우저에는 1개만 처리되있다면 브라우저 창 보이는 대로 1칸만 가져옴
+    - document.querySelector("#desc").innerText
+  - innerHTML은 요소 안에 있는 태그와 내용을 함께 가져와 보여줌
+    - 웹 브라우저 창에 보이는지와는 상관없이 소스에 있는 대로 가져옴
+    - document.querySelector("#desc").innerHTML
+  - textContent는 요소의 내용을 가져오되, 웹 브라우저 창에 보이는 대로가 아니라 소스에 있는 대로 가져옴
+    - 감춰진 요소까지 가져와 프로그래밍에 사용할 경우 textContnet 속성이 편리
+    - document.querySelector("#desc").textContent
+- 웹 요소의 내용 수정하기
+  - innerText, innerHTML, textContent 프로퍼티는 웹 요소 내용을 바꿀 떄도 사용
+    - 웹요소.innerText = 내용
+  - 요소에도 접근해 바꿀 수 있음
+    - 이미지 요소.src = 이미지 파일
+
+## 자바스크립트로 스타일 수정
+### CSS 속성에 접근하고 수정
+- CSS 속성에 접근하려면 요소에 접근 후 예약어 .style과 css 속성을 사용
+  - 요소.style.속성명
+- classList 프로퍼티
+  - 요소에 적용한 클래스 스타일을 모두 모아 놓은 프로퍼티
+  - document.querySelector('#desc p').classList
+- 클래스 스타일 추가하고 삭제하기
+  - classList에 클래스 스타일을 추가하거나 삭제하면서 여러 가지 효과를 지정할 수 있음
+    - 요소.classList.add(클래스명)
+    - 요소.classList.remove(클래스명)
+  - 클래스 스타일을 추가하는 add()
+- 특정 클래스 스타일이 있는 요소를 찾아주는 contains()
+  - 요소.classList.contains(클래스명)
+- 클래스 스타일 토글
+  - 클릭할 때마다 특정 클래스를 추가하거나 삭제하기를 반복할 경우 clasList의 toggle()를 사용하는게 편리
+  - title.classList.toggle("clicked");
+
+## DOM에서 폼 다루기
+### 폼 요소에 접근하고 값 가져오기
+- id나 class 속성값을 사용해 폼 요소 접근
+- 텍스트 필드에 입력한 값 가져오기
+  - 요소.value로 가져옴
+    - document.querySelector('#order-name').value
+- name 속성값을 사용해 폼 요소에 접근하기
+  - 폼요소에 id나 class 속성이 없고 name 속성만 있으면 name 식별자로 접근 가능
+  - 요즘은 대부분 폼 요소에 id, class를 사용하지만, css가 등장하기 전에는 name을 사용
+- 폼 배열을 사용해 폼 요소에 접근하기
+  - id, class, name 속성도 없는 경우 폼 배열사용
+  - docuement의 속성 중 forms 속성은 문서에 있는 <form> 태그를 가져와 배열과 비슷한 형태로 저장
+
+### 선택 목록과 항목에 접근하기
+- <select> 태그를 사용한 목록을 '선택 목록'이라 한다
+- 선택 목록에 접근
+  - querySelector()로 선택 목록에 접근
+  - 선택 목록에 여러 개의 옵션 항목이 있는데, 이에 접근하려면 options 프로퍼티 사용
+    - docuemnt.querySelector("#major").options
+    - selectedIndex에는 선택한 옵션의 인덱스가 들어감 
+- 알람 창에 선택한 항목 표시하기
+  - 선택 메뉴에서 몇 번째 항목을 선택했는지는 selectedIndex 값을 살펴 보면 안다
+  - 선택한 항목의 내용을 가져올 땐 innerText 프로퍼티 사용
+  - 선택 목록에 함수를 연결할 때는 onClick이 아닌 onChange 사용
+
+### 라디오 버튼과 체크 박스에 접근하기
+- 라이오 버튼이나 체크박스는 각 항목들의 name값이 모두 같음
+- 하나의 그룹 안에서 항목을 선택하므로 그룹별 같은 name을 붙임
+- checked 속성을 사용해 선택한 항목에 접근하기
+  - 라이오 버튼이나 체크 박스에는 checked 속성이 있음
+  - 만약 어떤 것을 선택하면 해당하는 <input> 태그에 checked 속성이 추가됨
+  - document.querySelector("input[name='subject']:checked")
+  
+
+
+
+
 
 
 
