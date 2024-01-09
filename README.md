@@ -429,7 +429,52 @@ window.addEventListener('contextmenu', e => {
 
 ## 이벤트 전파
 
+# DOM 활용하기
+## 웹 문서에 새로운 노드 추가하기
+### 내용이 있는 텍스트 노드 추가하기
+- 요소 노드 만들기 - createElement(요소명)
+  - DOM에 새로운 요소를 추가할 때 가장 먼저 요소 노드를 만들어야 함
+  - 즉, 어떤 태그를 사용할지 태그를 만들어 주는것
+- 텍스트 노드 만들기 - createTextNode(텍스트)
+- 자식 노드 연결하기 - appendChild(자식노드)
+  - 텍스트 노드를 요소 노드의 자식 노드로 추가할 때 사용
+  - 기존 자식 노드가 있을 경우 자식 노드 중 맨 끝에 추가됨
+- ex) 장바구니 추가
+```
+orderButton.addEventListener("click", () => {
+    let newP = document.createElement("p");
+    let textNode = document.createTextNode(title.innerText);
+    newP.appendChild(textNode);
+    orderInfo.appendChild(newP);
+}, { once : true });
+```
+  - { once : true } 이렇게 하면 이벤트 1번만 발생됨 여러번 클릭해도
 
+### 속성값이 있는 노드 추가하기
+- <img>태그의 src 속성을 넣을 때
+- 요소 노드 만들기 - createElement()
+- 속성 노드 만들기 - createAttribute(속성명)
+  - createAttribute()로 속성 노드를 만듬
+  - 속성 노드를 만든 후 속성값을 value 프로퍼티를 사용해 지정
+- 속성 노드 연결 - setAttributeNode(속성노드)
+- 자식 노드 연결 - appendChild()
+
+### 기존 노드의 앞에 새 요소 추가 - insertBefore(새 노드, 기준 노드)
+
+## 노드 삭제하기
+### remove()
+- 요소.remove()
+
+### removeChild()
+- 이 메서드를 사용하려면 먼저 부모 노드를 찾아야 하고 그 후 자식 노드를 삭제'
+- 부모 노드를 찾는 parentNode 프로퍼티
+  - 노드.parentNode
+- 자식 노드를 제거하는 removeChild()
+  - 부모노드.removeChild(자식노드)
+- this 사용시 주의할 점
+  - function() {..}에 this를 사용하면 this는 이벤트가 발생한 노드를 가리킴
+  - 하지만 위 함수를 화살표 함수로 작성하면 this는 window 객체를 가리킴
+  - this를 사용하려면 화살표 함수가 아닌 익명 함수로 지정
 
 
 
