@@ -507,7 +507,8 @@ orderButton.addEventListener("click", () => {
 - 팝업 창 닫기 - close()
   - 팝업 창의 모든 내용을 살펴본 후 닫을 수 있도록 내용의 아래쪽에 [닫기] 버튼이나 링크를 넣는것이 좋음
   - 버튼에 간단히 넣을 수도 있음. `<button onclick="window.clolse()>닫기</button>`
-  
+
+### screen 객체
 
 
 
