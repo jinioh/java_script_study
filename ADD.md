@@ -98,3 +98,7 @@ onClickOperator 실행: onClickOperator가 '+'와 같은 연산자로 호출되�
   3. 짧은 절차가 끝나면 return이나 break로 중단
   4. else를 제거함(이때 중첩 하나가 제거됨)
   5. 다음 중첩된 분기점이 나오면 1~4의 과정 반복
+
+## Math.random()은 무작위가 아님
+- 보안과관련된 작업을 할 떄는 이를 이용하면 위험
+- window.crypto.getRandomValues()가 따로 있음
