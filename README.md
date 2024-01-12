@@ -672,7 +672,68 @@ for(key in bag) {
   - next()하면 value와 done 옴.
   - done은 마지막 요소인지 아닌지여부
 
+# HTTP 통신과 JSON
+## JSON
+### 객체를 JSON 자료로 변환 - JSON.stringify(객체)
+### JSON 문자열을 객체로 - JSON.parse()
 
+# 비동기 프로그래밍
+## 동기 처리 방식
+### 동기 처리 방식과 비동기 처리 방식
+- 자바스크립트는 싱글 스레드 언어
+  - 자바스크립트에서는 함수의 실행 시간에 따라 오래 걸리느 것은 별도로 처리하고 실행이 끝났을 때 결과 반환
+- 비동기 처리 방식
+  - 3가지 방식이 있음
+  - 콜백 함수
+  - 프로미스
+  - async, await
+
+### 비동기 처리와 콜백 함수
+- 함수 이름을 콜백으로 사용
+```
+function order(coffee, callback) {
+    console.log('주문 접수');
+    setTimeout(() => {
+        callback(coffee);
+    }, 3000);
+}
+
+function display(result) {
+    console.log('준비 완료');
+}
+
+order('아메리카노', display)
+```
+### 익명으로 콜백 함수 작성
+- 콜백에 다른 콜백 들어가면 콜백 지옥이 발생할 수 있음
+- 이런 복잡성 땜에 프로미스 등장
+
+## 프로미스
+- 콜백 지옥을 피하기 위해 도입됨
+### promise 객체 만들기
+- 처리에 성공했을 때 실행할 콜백 함수와 성공하지 않았을 때 실행할 콜백 함수를 미리 약속
+- new Promise(resolve, reject)
+  - 프로미스를 만드는 소스를 '제작 코드'라 함
+
+### promise 객체 사용
+- 사용하는 코드를 '소비 코드'라 함
+- then(), catch(), finally() 사용
+
+### promise 상태
+- 프로미스 객체는 자신의 상태를 저장했다가 resolve()나 reject()를 실행하면 상태를 바꿈
+- promise 3단 진행 상태
+  - pending
+  - fulfilled
+  - rejected
+- 결과값을 이해하기 쉽게 result나 err 같은 변수 이름으로 받아 사용함
+- resolve가 실행되면 프로미스는 fulfilled 상태가 됨
+- then()의 반환값은 프로미스임
+  - then(display)라고 하면 반환된 order 프로미스 결과값이 display로 넘어감
+
+### 콜백 함수로 여러 단계 연결
+- 콜백지옥 주의
+
+### 프로미스 체이닝
 
 
 
