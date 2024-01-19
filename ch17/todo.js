@@ -80,18 +80,21 @@ function manageTodo(e) {
     } else if (whichButton === 'delete-button') {
         const todo = e.target.parentElement;
         removeLocal(todo);
+        todo.remove();
     }
 }
 
 function removeLocal(todo) {
     let todos;
-    if (localStorage.getItem('itmes') === null) {
+    if (localStorage.getItem('todos') === null) {
         todos = [];
     } else {
         todos = JSON.parse(localStorage.getItem('todos'));
     }
 
     const index = todos.indexOf(todo.children[0].innerText);
+    todos.splice(index, 1);
+    localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 addButton.addEventListener('click', addTodo);
