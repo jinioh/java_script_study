@@ -113,3 +113,16 @@ onClickOperator 실행: onClickOperator가 '+'와 같은 연산자로 호출되�
 
 ### indexOf와 includes
 - 배열이나 문자열에 원하는 값이 있는지 찾는 메서드
+
+### 이미지 스프라이트
+
+### || 조건 배열 includes로 줄이기
+- dif == 2 || dif == -1을 아래와 같이 줄일 수 있음
+- [2, -1].includes(diff)
+
+### setInterval
+- setTimeout과 비슷
+- 단, 한번만 실행되는 setTime과 달리 지정 시간 주기로 함수 실행
+
+### clearInterval, clearTimeout
+- setInterval과 setTimeout 함수는 각각 위 함수로 취소가능
