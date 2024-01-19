@@ -102,3 +102,14 @@ onClickOperator 실행: onClickOperator가 '+'와 같은 연산자로 호출되�
 ## Math.random()은 무작위가 아님
 - 보안과관련된 작업을 할 떄는 이를 이용하면 위험
 - window.crypto.getRandomValues()가 따로 있음
+
+## 입력창 검증
+- 보통 입력창이 있으면 폼 태그로 감싸 submit 이벤트를 사용하는 것이 좋음
+- alert 함수는 undefined를 반환. undefined는 false로 처리됨
+
+### for문 사용않고, 배열 만들기
+- const numbers = Array(9).fill().map((v, i) => i + 1); 
+- 배열 메서드가 많으므로 배열 메서드를 익히면 좋음
+
+### indexOf와 includes
+- 배열이나 문자열에 원하는 값이 있는지 찾는 메서드
