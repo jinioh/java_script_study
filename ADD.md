@@ -203,3 +203,20 @@ onClickOperator 실행: onClickOperator가 '+'와 같은 연산자로 호출되�
   - 태스크 큐에서 호출 스택으로 함수를 이동시키는 존재가 바로 이벤트 루프
   - 호출 스택이 비어있으면 이벤트 루프는 태스크 큐에서 핳ㅁ수를 하나씩 꺼내 호출 스택으로 옮김
 - 이벤트 리스너는 등록되는 순간 백그라운드에 저장됨
+
+## 우클릭 이벤트
+- contextmenu 이벤트
+- preventDefault 해야 기본동작을 없앰
+
+## 옵셔널 체이닝
+- '?'기호로 사용
+- 앞에 있는 것이 참이면 뒤 코드 실행
+- 거짓인 값이면 undefined로 만듬
+  - undefined[cellIndex]를 하면 오류지만, undefined?[cellIndex]를 하면 undefined 반환
+
+## &&로 if문 줄이기
+- mines.includes(data[rowIndex-1]?.[cellIndex-1]) && i++
+
+## documentFragment
+- 실무에서는 화면에 태그를 추가할 때 createElement로 만들어 태그에 바로 append하는 방식을 잘 사용하지 않음
+- 대신 docuemtn.createDocumentFragment로 메모리 안에서만 존재하는 docuemntFragment를 만들고, docuementFragement 안에 필요한 태그를 추가 한 후 마지막으로 $table에 한 번에 docuementFragement를 추가하는 방식을 사용
